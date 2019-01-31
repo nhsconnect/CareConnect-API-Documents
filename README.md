@@ -10,7 +10,7 @@
   <h3 align="center">CareConnect Documents API</h3>
 
   <p align="center">
-    Implementation Guide for creating the Core CareConnect API
+    Implementation Guide for creating the Documents CareConnect API
     <br>
     <a href="#"><strong>Visit the APIs &raquo;</strong></a>
   </p>
