@@ -1,0 +1,1026 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CapabilityStatement xmlns="http://hl7.org/fhir">
+	<!--Example url. See ODS capabilityStatement.instantiates element-->
+	<url value="https://fhir.nhs.uk/STU3/CapabilityStatement/CareConnect-ServerRequirements-CapabilityStatement-1"/>
+	<version value="1.0.0"/>
+	<name value="CareConnect-Requirements-CapabilityStatement-1"/>
+	<status value="draft"/>
+	<date value="2018-12-27"/>
+	<publisher value="NHS Digital"/>
+	<contact>
+		<name value="Interoperability Team"/>
+		<telecom>
+			<system value="email"/>
+			<value value="apilabs@nhs.net"/>
+			<use value="work"/>
+		</telecom>
+	</contact>
+	<description value="The CareConnect API aims to better support the delivery of care by opening up information and data held across different clinical care settings through the use of nationally defined INTEROPen FHIR® resources"/>
+	<!--is there an eng iso code?-->
+	<!--<jurisdiction>
+    <coding>
+      <system value="urn:iso:std:iso:3166"/>
+      <code value="GB"/>
+      <display value="United Kingdom"/>
+    </coding>
+  </jurisdiction>-->
+	<copyright value="Copyright © 2018 NHS Digital"/>
+	<kind value="requirements"/>
+	<fhirVersion value="3.0.1"/>
+	<!--acceptUnknown not supported in US Core requirements CS-->
+	<!--<acceptUnknown value=""/>-->
+	<!--should servers handle non-formal and generic XML and JSON MIME types?-->
+	<format value="application/fhir+xml"/>
+	<format value="application/fhir+json"/>
+	<rest>
+		<mode value="server"/>
+		<!--Clinical Summary Resources-->
+		<resource>
+			<!--Ability to retrieve all allergies for a specified patient for a specific allergy code.-->
+			<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-search-parameter-combination">
+				<extension url="required">
+					<valueString value="patient"/>
+				</extension>
+				<extension url="required">
+					<valueString value="code"/>
+				</extension>
+			</extension>
+			<!--Ability to retrieve all allergies for a specified patient and a specific status code. NB: ClinicalStatus is optional in the CareConnect profile so may not be supported in the system. As requested by DABA + IMcN 2018-12-19.-->
+			<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-search-parameter-combination">
+				<extension url="required">
+					<valueString value="patient"/>
+				</extension>
+				<extension url="required">
+					<valueString value="clinical-status"/>
+				</extension>
+			</extension>
+			<!--Ability to retrieve all allergies for a specified patient and a verification status code.. As requested by DABA + IMcN 2018-12-19.-->
+			<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-search-parameter-combination">
+				<extension url="required">
+					<valueString value="patient"/>
+				</extension>
+				<extension url="required">
+					<valueString value="verification-status"/>
+				</extension>
+			</extension>
+			<type value="AllergyIntolerance"/>
+			<profile>
+				<reference value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-AllergyIntolerance-1"/>
+			</profile>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<code value="read"/>
+			</interaction>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<code value="search-type"/>
+			</interaction>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHOULD"/>
+				</extension>
+				<code value="history-instance"/>
+			</interaction>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHOULD"/>
+				</extension>
+				<code value="vread"/>
+			</interaction>
+			<searchParam>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<name value="patient"/>
+				<type value="reference"/>
+			</searchParam>
+			<!--searchParam As requested at Query Mechanism Conformance webex 2018-12-03 -->
+			<searchParam>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHOULD"/>
+				</extension>
+				<name value="code"/>
+				<type value="token"/>
+			</searchParam>
+			<!--searchParam As requested by DABA + IMcN 2018-12-19 -->
+			<searchParam>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHOULD"/>
+				</extension>
+				<name value="clinical-status"/>
+				<type value="token"/>
+			</searchParam>
+			<!--searchParam As requested by DABA + IMcN 2018-12-19 -->
+			<searchParam>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<name value="verification-status"/>
+				<type value="token"/>
+			</searchParam>
+		</resource>
+		<resource>
+			<!--ClinicalStatus is optional in the CareConnect profile so may not be supported in the system.-->
+			<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-search-parameter-combination">
+				<extension url="required">
+					<valueString value="patient"/>
+				</extension>
+				<extension url="required">
+					<valueString value="clinical-status"/>
+				</extension>
+			</extension>
+			<!--Category is optional in the CareConnect profile so may not be supported in the system.-->
+			<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-search-parameter-combination">
+				<extension url="required">
+					<valueString value="patient"/>
+				</extension>
+				<extension url="required">
+					<valueString value="category"/>
+				</extension>
+			</extension>
+			<!--Ability to retrieve all conditions for a specified patient for a specific condition code.-->
+			<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-search-parameter-combination">
+				<extension url="required">
+					<valueString value="patient"/>
+				</extension>
+				<extension url="required">
+					<valueString value="code"/>
+				</extension>
+			</extension>
+			<type value="Condition"/>
+			<profile>
+				<reference value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Condition-1"/>
+			</profile>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<code value="read"/>
+			</interaction>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<code value="search-type"/>
+			</interaction>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHOULD"/>
+				</extension>
+				<code value="history-instance"/>
+			</interaction>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHOULD"/>
+				</extension>
+				<code value="vread"/>
+			</interaction>
+			<searchParam>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<name value="patient"/>
+				<type value="reference"/>
+			</searchParam>
+			<searchParam>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHOULD"/>
+				</extension>
+				<name value="code"/>
+				<type value="token"/>
+			</searchParam>
+			<searchParam>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHOULD"/>
+				</extension>
+				<name value="category"/>
+				<type value="token"/>
+			</searchParam>
+			<searchParam>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHOULD"/>
+				</extension>
+				<name value="clinical-status"/>
+				<type value="token"/>
+			</searchParam>
+		</resource>
+		<resource>
+			<!--Ability to retrieve all procedures for a specified patient either on a specified date or within a date range-->
+			<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-search-parameter-combination">
+				<extension url="required">
+					<valueString value="patient"/>
+				</extension>
+				<extension url="required">
+					<valueString value="date"/>
+				</extension>
+			</extension>
+			<type value="Procedure"/>
+			<profile>
+				<reference value="https://fhir.hl7.org.uk/StructureDefinition/CareConnect-Procedure-1"/>
+			</profile>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<code value="read"/>
+			</interaction>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<code value="search-type"/>
+			</interaction>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHOULD"/>
+				</extension>
+				<code value="history-instance"/>
+			</interaction>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHOULD"/>
+				</extension>
+				<code value="vread"/>
+			</interaction>
+			<searchParam>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<name value="patient"/>
+				<type value="reference"/>
+			</searchParam>
+			<searchParam>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<name value="date"/>
+				<type value="date"/>
+			</searchParam>
+		</resource>
+		<!--Clinical DiagnosticsResources-->
+		<resource>
+			<!--Ability to retrieve all observations for a specified patient either on a specified date or within a date range-->
+			<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-search-parameter-combination">
+				<extension url="required">
+					<valueString value="patient"/>
+				</extension>
+				<extension url="required">
+					<valueString value="date"/>
+				</extension>
+			</extension>
+			<!--Ability to retrieve all observations for a specified patient for a specific observation code-->
+			<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-search-parameter-combination">
+				<extension url="required">
+					<valueString value="patient"/>
+				</extension>
+				<extension url="required">
+					<valueString value="code"/>
+				</extension>
+			</extension>
+			<!--Ability to retrieve all observations for a specified patient either on a specified date or within a date range and for a specific observation code-->
+			<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-search-parameter-combination">
+				<extension url="required">
+					<valueString value="patient"/>
+				</extension>
+				<extension url="required">
+					<valueString value="date"/>
+				</extension>
+				<extension url="required">
+					<valueString value="code"/>
+				</extension>
+			</extension>
+			<type value="Observation"/>
+			<!--Ability to retrieve all observations for a specified patient either on a specified date or within a date range-->
+			<profile>
+				<reference value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Observation-1"/>
+			</profile>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<code value="read"/>
+			</interaction>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<code value="search-type"/>
+			</interaction>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHOULD"/>
+				</extension>
+				<code value="history-instance"/>
+			</interaction>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHOULD"/>
+				</extension>
+				<code value="vread"/>
+			</interaction>
+			<searchParam>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<name value="patient"/>
+				<type value="reference"/>
+			</searchParam>
+			<searchParam>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<name value="date"/>
+				<type value="date"/>
+			</searchParam>
+			<searchParam>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHOULD"/>
+				</extension>
+				<name value="code"/>
+				<type value="token"/>
+			</searchParam>
+		</resource>
+		<!--Medication Resources-->
+		<resource>
+			<type value="Medication"/>
+			<profile>
+				<reference value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Medication-1"/>
+			</profile>
+			<!--If an external Medication Resource is used in a MedicationStatement or a MedicationRequest, then the READ and SEARCH Criteria SHOULD be supported.-->
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHOULD"/>
+				</extension>
+				<code value="read"/>
+			</interaction>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHOULD"/>
+				</extension>
+				<code value="search-type"/>
+			</interaction>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHOULD"/>
+				</extension>
+				<code value="history-instance"/>
+			</interaction>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHOULD"/>
+				</extension>
+				<code value="vread"/>
+			</interaction>
+			<!--Note: No search parameters for this resource.-->
+		</resource>
+		<resource>
+			<!--Status is optional in the CareConnect profile so may not be supported in the system. Ability to retrieve all MedicationRequests for a specified patient for a specific status code-->
+			<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-search-parameter-combination">
+				<extension url="required">
+					<valueString value="patient"/>
+				</extension>
+				<extension url="required">
+					<valueString value="status"/>
+				</extension>
+			</extension>
+			<type value="MedicationRequest"/>
+			<profile>
+				<reference value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-MedicationRequest-1"/>
+			</profile>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<code value="read"/>
+			</interaction>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<code value="search-type"/>
+			</interaction>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHOULD"/>
+				</extension>
+				<code value="history-instance"/>
+			</interaction>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHOULD"/>
+				</extension>
+				<code value="vread"/>
+			</interaction>
+			<searchParam>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<name value="patient"/>
+				<type value="reference"/>
+			</searchParam>
+			<!--searchParam As requested at Query Mechanism Conformance webex 2018-12-03 -->
+			<searchParam>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHOULD"/>
+				</extension>
+				<name value="status"/>
+				<type value="token"/>
+			</searchParam>
+		</resource>
+		<resource>
+			<!--Ability to retrieve all MedicationStatements for a specified patient for a specific status code-->
+			<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-search-parameter-combination">
+				<extension url="required">
+					<valueString value="patient"/>
+				</extension>
+				<extension url="required">
+					<valueString value="status"/>
+				</extension>
+			</extension>
+			<type value="MedicationStatement"/>
+			<profile>
+				<reference value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-MedicationStatement-1"/>
+			</profile>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<code value="read"/>
+			</interaction>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<code value="search-type"/>
+			</interaction>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHOULD"/>
+				</extension>
+				<code value="history-instance"/>
+			</interaction>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHOULD"/>
+				</extension>
+				<code value="vread"/>
+			</interaction>
+			<searchParam>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<name value="patient"/>
+				<type value="reference"/>
+			</searchParam>
+			<!--searchParam As requested at Query Mechanism Conformance webex 2018-12-03 -->
+			<searchParam>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHOULD"/>
+				</extension>
+				<name value="status"/>
+				<type value="token"/>
+			</searchParam>
+		</resource>
+		<resource>
+			<!--VaccinationProcedure extension is optional in the CareConnect profile so may not be supported in the system. Ability to retrieve all immunisations for a specified patient for a specific vaccination procedure.-->
+			<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-search-parameter-combination">
+				<extension url="required">
+					<valueString value="patient"/>
+				</extension>
+				<extension url="required">
+					<valueString value="vaccination-procedure-code"/>
+				</extension>
+			</extension>
+			<!--Ability to retrieve all immunisations for a specified patient and an immunization given Flag.. As requested by DABA + IMcN 2018-12-19-->
+			<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-search-parameter-combination">
+				<extension url="required">
+					<valueString value="patient"/>
+				</extension>
+				<extension url="required">
+					<valueString value="notgiven"/>
+				</extension>
+			</extension>
+			<!--Ability to retrieve all immunisations for a specified patient and a specific status code. As requested by DABA + IMcN 2018-12-19-->
+			<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-search-parameter-combination">
+				<extension url="required">
+					<valueString value="patient"/>
+				</extension>
+				<extension url="required">
+					<valueString value="status"/>
+				</extension>
+			</extension>
+			<type value="Immunization"/>
+			<profile>
+				<reference value="https://fhir.hl7.org.uk/StructureDefinition/CareConnect-Immunization-1"/>
+			</profile>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<code value="read"/>
+			</interaction>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<code value="search-type"/>
+			</interaction>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHOULD"/>
+				</extension>
+				<code value="history-instance"/>
+			</interaction>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHOULD"/>
+				</extension>
+				<code value="vread"/>
+			</interaction>
+			<searchParam>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<name value="patient"/>
+				<type value="reference"/>
+			</searchParam>
+			<!--Custom Query As requested by MJ requested (Query Mechanism Conformance webex 2018-12-03) -->
+			<!--EXAMPLE Custom Query [TBC] + HL7 UK FHIR Server to host asset -->
+			<searchParam>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHOULD"/>
+				</extension>
+				<name value="CareConnect-vaccination-procedure-code"/>
+				<definition value="https://fhir.hl7.org.uk/STU3/SearchParameter/CareConnect-vaccination-procedure-code"/>
+				<type value="token"/>
+			</searchParam>
+			<!--searchParam As requested by DABA + IMcN 2018-12-19 -->
+			<searchParam>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<name value="notgiven"/>
+				<type value="token"/>
+			</searchParam>
+			<!--searchParam As requested by DABA + IMcN 2018-12-19 -->
+			<searchParam>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<name value="status"/>
+				<type value="token"/>
+			</searchParam>
+		</resource>
+		<!--Entities-->
+		<resource>
+			<!--Given, Family, Birthdate & Gender should only be used for combination queries - Mpas to US Core-->
+			<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-search-parameter-combination">
+				<extension url="required">
+					<valueString value="name"/>
+				</extension>
+				<extension url="required">
+					<valueString value="gender"/>
+				</extension>
+			</extension>
+			<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-search-parameter-combination">
+				<extension url="required">
+					<valueString value="name"/>
+				</extension>
+				<extension url="required">
+					<valueString value="birthdate"/>
+				</extension>
+			</extension>
+			<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-search-parameter-combination">
+				<extension url="required">
+					<valueString value="family"/>
+				</extension>
+				<extension url="required">
+					<valueString value="gender"/>
+				</extension>
+			</extension>
+			<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-search-parameter-combination">
+				<extension url="required">
+					<valueString value="given"/>
+				</extension>
+				<extension url="required">
+					<valueString value="gender"/>
+				</extension>
+			</extension>
+			<type value="Patient"/>
+			<profile>
+				<reference value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1"/>
+			</profile>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<code value="read"/>
+			</interaction>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<code value="search-type"/>
+			</interaction>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHOULD"/>
+				</extension>
+				<code value="history-instance"/>
+			</interaction>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHOULD"/>
+				</extension>
+				<code value="vread"/>
+			</interaction>
+			<searchParam>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<name value="identifier"/>
+				<type value="token"/>
+			</searchParam>
+			<searchParam>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<name value="birthdate"/>
+				<type value="date"/>
+				<documentation value="Given, Family, Birthdate and Gender should only be used for combination queries."/>
+			</searchParam>
+			<searchParam>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<name value="family"/>
+				<type value="string"/>
+				<documentation value="Given, Family, Birthdate and Gender should only be used for combination queries."/>
+			</searchParam>
+			<searchParam>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<name value="given"/>
+				<type value="string"/>
+				<documentation value="Given, Family, Birthdate and Gender should only be used for combination queries."/>
+			</searchParam>
+			<searchParam>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<name value="gender"/>
+				<type value="token"/>
+				<documentation value="Given, Family, Birthdate and Gender should only be used for combination queries."/>
+			</searchParam>
+			<searchParam>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<name value="name"/>
+				<type value="string"/>
+				<documentation value="Given, Family, Birthdate and Gender should only be used for combination queries."/>
+			</searchParam>
+		</resource>
+		<resource>
+			<type value="Practitioner"/>
+			<profile>
+				<reference value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Practitioner-1"/>
+			</profile>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<code value="read"/>
+			</interaction>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<code value="search-type"/>
+			</interaction>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHOULD"/>
+				</extension>
+				<code value="history-instance"/>
+			</interaction>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHOULD"/>
+				</extension>
+				<code value="vread"/>
+			</interaction>
+			<searchParam>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<name value="identifier"/>
+				<type value="token"/>
+			</searchParam>
+			<searchParam>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<name value="name"/>
+				<type value="string"/>
+			</searchParam>
+		</resource>
+		<resource>
+			<type value="PractitionerRole"/>
+			<profile>
+				<reference value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-PractitionerRole-1"/>
+			</profile>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<code value="read"/>
+			</interaction>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<code value="search-type"/>
+			</interaction>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHOULD"/>
+				</extension>
+				<code value="history-instance"/>
+			</interaction>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHOULD"/>
+				</extension>
+				<code value="vread"/>
+			</interaction>
+			<!--******ORIGINALLY SUGGESTED.NOTE: No search parameters for this resource -->
+			<!--BMc/ NR requested (Query Mechanism Conformance webex 2018-12-03) that the PractitionerRole.practitioner (reference) search parameter is supported and specified as MUST conformance in the CORE API. -->
+			<searchParam>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<name value="practitioner"/>
+				<type value="reference"/>
+			</searchParam>
+			<!--BMc/ NR requested (Query Mechanism Conformance webex 2018-12-03) that the PractitionerRole.organization (reference) search parameter is supported and specified as MUST conformance in the CORE API.  -->
+			<searchParam>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<name value="organization"/>
+				<type value="reference"/>
+			</searchParam>
+		</resource>
+		<resource>
+			<type value="Location"/>
+			<profile>
+				<reference value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Location-1"/>
+			</profile>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<code value="read"/>
+			</interaction>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<code value="search-type"/>
+			</interaction>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHOULD"/>
+				</extension>
+				<code value="history-instance"/>
+			</interaction>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHOULD"/>
+				</extension>
+				<code value="vread"/>
+			</interaction>
+			<!--Ability to retrieve based on a specific identifier (e.g. ODS Site Code) -->
+			<searchParam>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<name value="identifier"/>
+				<type value="token"/>
+			</searchParam>
+			<!--Retrieve by location name -->
+			<searchParam>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<name value="name"/>
+				<type value="string"/>
+			</searchParam>
+			<!--Retrieve by Location address-->
+			<searchParam>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHOULD"/>
+				</extension>
+				<name value="address"/>
+				<type value="string"/>
+				<documentation value="Retrieve by a (part of the) address of the location"/>
+			</searchParam>
+			<!--Retrieve by Location aaddress component EXAMPLE. Conforms to US Core-->
+			<searchParam>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHOULD"/>
+				</extension>
+				<name value="address-postalcode"/>
+				<type value="string"/>
+				<documentation value="Retrieve by a city specified in an address"/>
+			</searchParam>
+			<!--Retrieve by Location aaddress component EXAMPLE.  Conforms to US Core-->
+			<searchParam>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHOULD"/>
+				</extension>
+				<name value="address-city"/>
+				<type value="string"/>
+				<documentation value="Retrieve by a postal code specified in an address"/>
+			</searchParam>
+		</resource>
+		<resource>
+			<type value="Organization"/>
+			<profile>
+				<reference value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1"/>
+			</profile>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<code value="read"/>
+			</interaction>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<code value="search-type"/>
+			</interaction>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHOULD"/>
+				</extension>
+				<code value="history-instance"/>
+			</interaction>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHOULD"/>
+				</extension>
+				<code value="vread"/>
+			</interaction>
+			<!--Ability to retrieve based on a specific identifier (e.g. ODS Code) -->
+			<searchParam>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<name value="identifier"/>
+				<type value="token"/>
+			</searchParam>
+			<!--Retrieve by Organization name -->
+			<searchParam>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<name value="name"/>
+				<type value="string"/>
+			</searchParam>
+			<!--Retrieve by Organization address-->
+			<searchParam>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHOULD"/>
+				</extension>
+				<name value="address"/>
+				<type value="string"/>
+				<documentation value="Retrieve by a (part of the) address of the Organization."/>
+			</searchParam>
+			<!--Retrieve by Organization address component EXAMPLE.  Conforms to US Core-->
+			<searchParam>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHOULD"/>
+				</extension>
+				<name value="address-postalcode"/>
+				<type value="string"/>
+				<documentation value="Retrieve by a city specified in an address"/>
+			</searchParam>
+			<!--Retrieve by Location aaddress component EXAMPLE.  Conforms to US Core-->
+			<searchParam>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHOULD"/>
+				</extension>
+				<name value="address-city"/>
+				<type value="string"/>
+				<documentation value="Retrieve by a postal code specified in an address"/>
+			</searchParam>
+		</resource>
+		<!--Management-->
+		<resource>
+			<!--Period is optional in the CareConnect profile so may not be supported in the system.-->
+			<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-search-parameter-combination">
+				<extension url="required">
+					<valueString value="patient"/>
+				</extension>
+				<extension url="required">
+					<valueString value="date"/>
+				</extension>
+			</extension>
+			<!--Type is optional in the CareConnect profile so may not be supported in the system.-->
+			<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-search-parameter-combination">
+				<extension url="required">
+					<valueString value="patient"/>
+				</extension>
+				<extension url="required">
+					<valueString value="type"/>
+				</extension>
+			</extension>
+			<!--Type & Date are optional in the CareConnect profile so may not be supported in the system.-->
+			<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-search-parameter-combination">
+				<extension url="required">
+					<valueString value="patient"/>
+				</extension>
+				<extension url="required">
+					<valueString value="type"/>
+				</extension>
+				<extension url="required">
+					<valueString value="date"/>
+				</extension>
+			</extension>
+			<!--Ability to retrieve all encounters for a specified patient and a specific status code. As requested by DABA + IMcN 2018-12-19-->
+			<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-search-parameter-combination">
+				<extension url="required">
+					<valueString value="patient"/>
+				</extension>
+				<extension url="required">
+					<valueString value="status"/>
+				</extension>
+			</extension>
+			<type value="Encounter"/>
+			<profile>
+				<reference value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Encounter-1"/>
+			</profile>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<code value="read"/>
+			</interaction>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<code value="search-type"/>
+			</interaction>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHOULD"/>
+				</extension>
+				<code value="history-instance"/>
+			</interaction>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHOULD"/>
+				</extension>
+				<code value="vread"/>
+			</interaction>
+			<searchParam>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<name value="patient"/>
+				<type value="reference"/>
+			</searchParam>
+			<searchParam>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHOULD"/>
+				</extension>
+				<name value="date"/>
+				<type value="date"/>
+			</searchParam>
+			<searchParam>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHOULD"/>
+				</extension>
+				<name value="type"/>
+				<type value="token"/>
+			</searchParam>
+			<!--Ability to retrieve all encounters for a specified patient and a specific status code. As requested by DABA + IMcN 2018-12-19.-->
+			<searchParam>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<name value="status"/>
+				<type value="token"/>
+			</searchParam>
+		</resource>
+	</rest>
+</CapabilityStatement>
