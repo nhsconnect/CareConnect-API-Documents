@@ -5,10 +5,10 @@ tags: [overview]
 sidebar: overview_sidebar
 permalink: index.html
 toc: false
-summary: A brief introduction to the Care Connect Documents API
+summary: Overviews Care Connect Documents API FHIR resources and Conformance
 ---
 
-{% include important.html content="This site is under active development by NHS Digital on behalf of INTEROPen and is intended to provide all the technical resources you need to successfully develop the Care Connect Documents API. This project is being developed using an agile methodology so iterative updates to content will be added on a regular basis." %}
+{% include important.html content="This site is under active development by NHS Digital in collaboration with INTEROPen and is intended to provide all the technical resources you need to successfully develop the Care Connect Documents API. This project is being developed using an agile methodology so iterative updates to content will be added on a regular basis." %}
 
 # Introduction #
 
@@ -16,13 +16,14 @@ summary: A brief introduction to the Care Connect Documents API
 This is the Care Connect Get Unstructured Document RESTful FHIR STU3 ‘Read Only’ experimental API implementation guide. It is a component specification of the Care Connect API (CCAPI) suite. 
 -->
 
+The Care Connect APIs have been developed by NHS Digital in collaboration with the INTEROPen community. These APIs aim to  better support the delivery of care by opening up information and data held across different clinical care settings through the use of nationally defined <!--INTEROPen--> FHIR® resources.
+<!--
 The Care Connect RESTful APIs have been developed collaboratively by NHS Digital and the INTEROPen community. These APIs aim to  better support the delivery of care by opening up information and data held across different clinical care settings through the use of nationally defined INTEROPen FHIR® resources.
+-->
 
-The Care Connect RESTful APIs are Based on FHIR STU3 and define the minimum conformance requirements and standards for retrieving patient data and records.
+The Care Connect APIs are Based on FHIR STU3 and define the minimum conformance requirements and standards for retrieving patient data and records.
 
-The INTEROPen vision is to create a library of nationally defined HL7® FHIR® resources and interaction patterns that implementers can adopt to simplify integration and interoperability within UK health and social care.
-
-Find out more on the [INTEROPen website](http://interopen.org/).
+To learn more about NHS Digital and INTEROPen see below.
 
 
 # Care Connect Documents API #
@@ -47,7 +48,7 @@ The resources in scope for this API are:
 <th>&nbsp;</th>
 </tr>
 <tr>
-<td><a href="api_foundation_capability.html">Binary</a></td>
+<td><a href="api_documents_binary.html">Binary</a></td>
 <td></td>
 <td>&nbsp;</td>
 </tr>
@@ -105,3 +106,18 @@ This guide has been created to support the adoption of the "your project here" p
 Need to add include here....
 
 -->
+
+# NHS Digital #
+
+[NHS Digital](https://digital.nhs.uk/) is the national information and technology partner to the health and care system using digital technology to transform the NHS and social care.
+
+To learn more about the Interoperability efforts at the NHS Digital, visit the [NHS Digital Interoperability](https://www.england.nhs.uk/digitaltechnology/connecteddigitalsystems/interoperability/) pages.
+
+
+# INTEROPen #
+
+INTEROPen is an OPEN collaboration of individuals, industry, standards organisations and health and care providers, who have agreed to work together to accelerate the development of open standards for interoperability in the health and social care sector.
+
+The INTEROPen vision is to create a library of nationally defined HL7® FHIR® resources and interaction patterns that implementers can adopt to simplify integration and interoperability within UK health and social care.
+
+Find out more on the [INTEROPen website](http://interopen.org/).

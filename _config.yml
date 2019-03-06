@@ -3,14 +3,14 @@ output: web
 # this property is useful for conditional filtering of content that is separate from the PDF.
 
 #topnav_title: Get Unstructured Document API| FHIR&reg;
-topnav_title: Care Connect Documents API| FHIR&reg;
+topnav_title: Care Connect Documents API&nbsp;| FHIR&reg;
 # this appears on the top navigation bar next to the home button
 
 #site_title: Get Unstructured Document API
 site_title: CareConnect Documents API
 # this appears in the html browser tab for the site title (seen mostly by search engines, not users)
 
-company_name: INTEROPen and NHS Digital
+company_name: NHS Digital in collaboration with INTEROPen
 # this appears in the footer
 
 #github_editme_path: /edit/develop/
