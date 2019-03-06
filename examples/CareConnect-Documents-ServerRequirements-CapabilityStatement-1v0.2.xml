@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CapabilityStatement xmlns="http://hl7.org/fhir">
+	<!--Example url. See ODS capabilityStatement.instantiates element-->
+	<url value="https://fhir.nhs.uk/STU3/CapabilityStatement/CareConnect-Documents-ServerRequirements-CapabilityStatement-1"/>
+	<version value="1.0.0"/>
+	<name value="CareConnect-Documents-ServerRequirements-CapabilityStatement-1"/>
+	<status value="draft"/>
+	<date value="2019-02-057"/>
+	<publisher value="NHS Digital"/>
+	<contact>
+		<name value="Interoperability Team"/>
+		<telecom>
+			<system value="email"/>
+			<value value="apilabs@nhs.net"/>
+			<use value="work"/>
+		</telecom>
+	</contact>
+	<description value="This profile defines the expected capabilities of the Care Connect Documents Server conforming to the Care Connect Documents API IG."/>
+	<copyright value="Copyright © 2019 NHS Digital"/>
+	<kind value="requirements"/>
+	<fhirVersion value="3.0.1"/>
+	<acceptUnknown value="no"/>
+	<!--should servers handle non-formal and generic XML and JSON MIME types?-->
+	<format value="application/fhir+xml"/>
+	<format value="application/fhir+json"/>
+	<rest>
+		<mode value="server"/>
+		<!--Binary Resource-->
+		<resource>
+			<type value="Binary"/>
+			<interaction>
+				<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation">
+					<valueCode value="SHALL"/>
+				</extension>
+				<code value="read"/>
+			</interaction>
+		</resource>
+	</rest>
+</CapabilityStatement>

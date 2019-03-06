@@ -15,7 +15,7 @@ summary: "Overview of Documents API Conformance expectations"
 
 ## 1. Server Conformance Requirements ##
 
-This section outlines conformance requirements for Care Connect Documents API Servers<!--and Client applications-->, identifying FHIR resourcess, RESTful operations and the search parameters to be supported. 
+This section outlines conformance requirements for Care Connect Documents API Servers<!--and Client applications-->, identifying FHIR resources and RESTful operations <!--and the search parameters--> to be supported. 
 
 <!--
 Note: The individual Care Connect Core profiles identify the structural constraints, terminology bindings and invariants, however, implementers must refer to the conformance requirements for details on the RESTful operations, specific profiles and the search parameters applicable to each of the US Core actors.
@@ -24,12 +24,13 @@ Note: The individual Care Connect Core profiles identify the structural constrai
 ### 1.1 Conformance Requirements for Care Connect Documents Server ###
 
 - MUST support HL7 FHIR STU3 version 3.0.1.
-- MUST support the Binary resource.
 - MUST Implement REST behavior according to the [FHIR specification]({{ site.hl7_baseurl.stu3 }}http://hl7.org/fhir/STU3/http.html){:target="_blank"}
 - MUST support JSON format for all CareConnect API interactions and SHOULD support XML format.
+- MUST support the Binary resource.
+- All servers MUST make available the <a href="http://hl7.org/fhir/STU3/http.html#read">read </a> <!--and <a href="http://hl7.org/fhir/STU3/http.html#search">search </a>--> interaction <!--for the Profiles the server chooses to support--> to support retrieval of the Binary resource.
 - MUST declare a CapabilityStatement identifying the list of resources, operations and search parameters supported.
   - In order to be a compliant FHIR server, Servers <!--client systems--> MUST expose a valid FHIR [CapabilityStatement]({{ site.hl7_baseurl.stu3 }}http://hl7.org/fhir/STU3/capabilitystatement.html){:target="_blank"} instance. See the [capabilities](api_foundation_capability.html) interaction.
-  - This MUST conform to the Care Connect Documents API `Requirements` [Capability Statement](examples/CareConnect-Documents-ServerRequirements-CapabilityStatement-1v0.1.xml){:target="_blank"}.
+  - This MUST conform to the Care Connect Documents API `Requirements` [Capability Statement](examples/CareConnect-Documents-ServerRequirements-CapabilityStatement-1v0.2.xml){:target="_blank"}.
 
 <!--  with the See also the Care Connect [Core API CapabilityStatement Requirements](api_foundation_capability.html) profile. -->
 
@@ -48,10 +49,12 @@ SHALL declare a Conformance identifying the list of profiles, operations, search
 In order to be a compliant FHIR server, client systems need to expose a valid FHIR [Capability]({{ site.hl7_baseurl.stu3 }}capabilitystatement.html){:target="_blank"} profile. See also [Care Connect API FHIR Capability profile](api_foundation_capability.html).
 -->
 
-
+<!--
 ### 1.2 Profile Interaction Summary ###
 
 1. All servers MUST make available the <a href="http://hl7.org/fhir/STU3/http.html#read">read </a> and <a href="http://hl7.org/fhir/STU3/http.html#search">search </a> interactions for the Profiles the server chooses to support.
+-->
+
 
 <!-- 2. All servers SHOULD make available the <a href="http://hl7.org/fhir/STU3/http.html#vread">vread </a> and <a href="http://hl7.org/fhir/STU3/http.html#history-instance">history-instance </a> interactions for the Profiles the server chooses to support.-->
 
@@ -161,7 +164,7 @@ Specific server search capabilities are described in detail in each of the resou
 
 ### 1.3 Capability Statement ###
 
-FHIR Servers MUST support the Care Connect Documents API `Requirements` [Capability Statement](examples/CareConnect-Documents-ServerRequirements-CapabilityStatement-1v0.1.xml){:target="_blank"}
+FHIR Servers MUST support the Care Connect Documents API `Requirements` [Capability Statement](examples/CareConnect-Documents-ServerRequirements-CapabilityStatement-1v0.2.xml){:target="_blank"}
 
 <!--[Demographics Batch Service (DBS)](CareConnect-ServerRequirements-CapabilityStatement-1){:target="_blank"}-->
 
