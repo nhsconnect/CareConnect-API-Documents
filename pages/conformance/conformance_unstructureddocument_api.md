@@ -4,7 +4,7 @@ keywords: getcarerecord, structured, rest, resource
 tags: [conformance]
 sidebar: foundations_sidebar
 permalink: conformance_unstructureddocument_api.html
-summary: "Overview of the Conformance section"
+summary: "Overview of Documents API Conformance expectations"
 ---
 
 {% include custom/search.warnbanner.html %}
@@ -13,7 +13,7 @@ summary: "Overview of the Conformance section"
 
 <!--## 1. Pre-Requisites for FHIR Servers ##-->
 
-## 1.Care Connect Documents API Conformance Requirements ##
+## 1. Server Conformance Requirements ##
 
 This section outlines conformance requirements for Care Connect Documents API Servers<!--and Client applications-->, identifying FHIR resourcess, RESTful operations and the search parameters to be supported. 
 
@@ -21,18 +21,21 @@ This section outlines conformance requirements for Care Connect Documents API Se
 Note: The individual Care Connect Core profiles identify the structural constraints, terminology bindings and invariants, however, implementers must refer to the conformance requirements for details on the RESTful operations, specific profiles and the search parameters applicable to each of the US Core actors.
 -->
 
-### 1.1 Care Connect Documents API Requirements ###
+### 1.1 Conformance Requirements for Care Connect Documents Server ###
 
 - MUST support HL7 FHIR STU3 version 3.0.1.
 - MUST support the Binary resource.
 - MUST Implement REST behavior according to the [FHIR specification]({{ site.hl7_baseurl.stu3 }}http://hl7.org/fhir/STU3/http.html){:target="_blank"}
-- MUST support XML **or** JSON formats for all CareConnect API interactions and SHOULD support both formats.
+- MUST support JSON format for all CareConnect API interactions and SHOULD support XML format.
 - MUST declare a CapabilityStatement identifying the list of resources, operations and search parameters supported.
   - In order to be a compliant FHIR server, Servers <!--client systems--> MUST expose a valid FHIR [CapabilityStatement]({{ site.hl7_baseurl.stu3 }}http://hl7.org/fhir/STU3/capabilitystatement.html){:target="_blank"} instance. See the [capabilities](api_foundation_capability.html) interaction.
   - This MUST conform to the Care Connect Documents API `Requirements` [Capability Statement](examples/CareConnect-Documents-ServerRequirements-CapabilityStatement-1v0.1.xml){:target="_blank"}.
 
 <!--  with the See also the Care Connect [Core API CapabilityStatement Requirements](api_foundation_capability.html) profile. -->
 
+<!--
+- MUST support XML **or** JSON formats for all CareConnect API interactions and SHOULD support both formats.
+-->
 
 <!-- MUST Implement REST behavior according to the [FHIR specification]({{ site.hl7_baseurl.stu3 }}http.html){:target="_blank"} -->
 <!-- MUST support at least one additional resource profile from the list of CareConnect Profiles -->
@@ -163,6 +166,45 @@ FHIR Servers MUST support the Care Connect Documents API `Requirements` [Capabil
 <!--[Demographics Batch Service (DBS)](CareConnect-ServerRequirements-CapabilityStatement-1){:target="_blank"}-->
 
  
+
+## 2. Client Conformance Requirements ##
+
+<!-- ## 2. Care Connect Core API Client Conformance Requirements ## -->
+
+This section outlines conformance requirements for Care Connect Documents API <!--Servers and --> Client applications: 
+
+TBC
+
+<!--
+- When using the Care Connect Core API to access clinical data, a verified NHS number SHOULD be used.
+-->
+
+## 3. Security Conformance Considerations ##
+
+<font color="red"> WORK IN PROGRESS - NEEDS DISCUSSION </font>
+
+All Documents API transactions must be secured appropriately with access limited to authorized individuals, data protected in transit and appropriate audit measures taken.
+
+Implementers should be aware of the [security considerations](http://hl7.org/fhir/STU3/security.html) associated with FHIR transactions.
+
+For the purpose of the Documents API, minimum security conformance requirements are as follows:
+
+- Systems MUST support Transport Layer Security Version 1.2 (TLS v1.2) or higher for all transmissions
+- For authentication, systems SHOULD support [Authentication Types](https://developer.nhs.uk/apis/national-authentication/AuthenType_Intro.html) as used within the NHS Identity Service.
+- For authorisation systems SHOULD support the OAuth 2.0 standard. See the NHS Identity Service [Authorisation Service Overview](https://nhsconnect.github.io/national-authentication/Intro_Authorisation.html)
+- Systems SHOULD use ID & Access Tokens as specified [here](https://developer.nhs.uk/apis/national-authentication/TechOverview_Artefacts.html#introduction)
+
+<!--and Authorization, Systems SHALL use the Smart on FHIR OAuth 2.0 profiles. NOTE: The Smart On FHIR specifications include the required OAuth2 scopes for enabling security decisions.
+- Alignment with RBAC - The national authorisation services are likely to use the national RBAC roles and activities associated with authenticated users to inform it’s authorisation decisions.
+-->
+- Systems MUST implement consent requirements as per local policies.
+
+<!-- not taking place over a secure network connection. (Using TLS even within a secured network environment is still encouraged to provide defense in depth.) -->
+<!--
+- Systems SHOULD use national Role Based Access Control [RBAC](https://developer.nhs.uk/apis/spine-core/security_rbac.html) - supports the complex access control requirements of the NHS.
+
+-->
+
 
 <!--
 ### 1.4 NHS Number ###

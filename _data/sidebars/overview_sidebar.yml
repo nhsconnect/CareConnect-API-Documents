@@ -67,7 +67,7 @@ entries:
   - title: Conformance
     output: web
     folderitems:
-    - title: Server Conformance
+    - title: Conformance Requirements
       url: /conformance_unstructureddocument_api.html
       output: web
   - title: Resources
