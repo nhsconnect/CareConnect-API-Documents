@@ -39,7 +39,7 @@ Only verified NHS Number SHALL be used with CareConnect profiles. This can be ac
 -->
 
 ## 1. Resource API Structure ##
-The FHIR resources described in the Explore section of this implementation guide have been structured consistently in the following way:
+The FHIR <!--Care Connect Documents profile API's--> resources described in this section of the implementation guide have been structured consistently in the following way:
 - `0.` References
 - `1.` Read
 - `2.` Search Parameters

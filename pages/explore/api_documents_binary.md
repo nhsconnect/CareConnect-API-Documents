@@ -28,7 +28,7 @@ Binary resources behave slightly differently to all other resources on the RESTf
 The HL7 specification states that "the intent is that unless specifically requested, the FHIR XML/JSON representation is not returned". This behaviour is implemented in the Care Connect Reference Implementation and would be expected of any standard implementation.
 
 
-## FHIR Elements ##
+<b> FHIR Elements: </b>
 
 <p>The following FHIR Binary elements are key to the implementation:</p>
 
@@ -43,7 +43,7 @@ The HL7 specification states that "the intent is that unless specifically reques
 <td>Binary.id</td><td>0..1</td><td>id</td><td>Mandatory Logical id of Binary resource. Assigned by Provider. Uniquely identifies the document. Used by Consumers to retrieve document.</td>
 </tr>
 <tr>
-<td>Binary.contentType</td><td>1..1</td><td>code</td><td>MimeType of the binary content</td>
+<td>Binary.contentType</td><td>1..1</td><td>code</td><td>MIME Type of the binary content</td>
 </tr>
 <tr>
 <td>Binary.content</td><td>1..1</td><td>Base64Binary</td><td>The actual content</td>
@@ -58,7 +58,7 @@ GET [baseUrl]/Binary/[id]</div>
 <p>Return a single <code class="highlighter-rouge">Binary</code> for the specified id.</p>
 
 
-<p>All requests MUST contain a valid ‘Authorization’ header and MAY contain an ‘Accept’ header. The `Accept` header indicates the format of the response the client is able to understand, this maybe be one of the following <code class="highlighter-rouge">application/fhir+JSON</code> or <code class="highlighter-rouge">application/fhir+xml</code>, this will return the requested resource as FHIR <code class="highlighter-rouge">Binary</code> resource.</p>
+<p>All requests MUST contain a valid ‘Authorization’ header and MAY contain an ‘Accept’ header. The `Accept` header indicates the format of the response the client is able to understand. If the `Accept` header is used in the request, this MUST support either one of the <code class="highlighter-rouge">application/fhir+JSON</code> or <code class="highlighter-rouge">application/fhir+xml</code> MIME types only, this call will return the requested resource as a FHIR <code class="highlighter-rouge">Binary</code> resource.</p>
 
 <p>The <code class="highlighter-rouge">Binary</code> will be returned in a native format (i.e. not contained within a FHIR resource) if no MIME type is specified, an appropriate MIME type is included or a wild card (<code class="highlighter-rouge">*/*</code>) is included within the request header.</p>
 
@@ -67,7 +67,7 @@ Common <!--health related--> MIME types are listed below:
 <table>
   <thead>
     <tr>
-       <th>Image/Document Type</th>
+       <th>File Format</th>
        <th>MIME Type</th>
     </tr>
   </thead>
@@ -113,41 +113,41 @@ For Binary resources, the result of a query are different when compared to the r
 
 <h3 id="readresponse">1.1. Default Read Operation - with No HTTP Accept Header</h3>
 
-A client makes a read request for an unstructured document (binary) that doesn’t explicitly specify a content type.
+A client makes a read request for a binary resource and does not use the HTTP Accept Header to specify content type to be returned.
 
 <div markdown="span" class="alert alert-success" role="alert">
-GET [baseUrl]/Binary/[id]   with no HTTP Accept header</div>
+GET [baseUrl]/Binary/[id]   </div>
 
-The server returns the content using the `native` mime type of the document e.g. PDF – No FHIR Binary resource is returned.
-
+ - The server returns the content using the `native` MIME type of the document e.g. PDF 
+ - No FHIR Binary resource is returned.
+  
 <font color="red"> Provider Systems <b>MUST</b> support this query construct.</font>
 
 <h3 id="readresponse">1.2. Read Operation Format Override (Method #1) - with No HTTP Accept Header</h3>
 
-A client makes a read request for an unstructured document (binary) using the `_format` override on the query parameter to specify a specific content type. 
+A client makes a read request for a binary resource using the `_format` override on the query parameter to specify content type to be returned. 
 
 <div markdown="span" class="alert alert-success" role="alert">
-GET [baseUrl]/Binary/[id]?&#95;format=[format] 	with no HTTP Accept header</div>
+GET [baseUrl]/Binary/[id]?&#95;format=[format] 	</div>
 
-The server returns a FHIR Binary resource in the requested format with the document `base64` encoded within the FHIR Binary content element. 
+ - The server returns a FHIR Binary resource in the requested format with the document `base64` encoded within the FHIR Binary content element. 
 
 <font color="red"> Provider Systems <b>MUST</b> support this query construct.</font>
 
-<h3 id="readresponse">1.3. Read Operation Format Override (Method #2) - with a HTTP Accept Header of [format]</h3>
+<h3 id="readresponse">1.3. Read Operation Format Override (Method #2) - with an HTTP Accept Header of [format]</h3>
 
-A client makes a read request for an unstructured document (binary) using the `Accept` HTTP Header to specify a specific content type.
+A client makes a read request for a binary resource using the `Accept` HTTP Header to specify content type to be returned.
 
 <div markdown="span" class="alert alert-success" role="alert">
-GET [baseUrl]/Binary/[id] 	with an HTTP Accept header of [format]</div>
+GET [baseUrl]/Binary/[id] 	</div>
 
-The server returns a FHIR Binary resource in the requested format with the document `base64` encoded within the FHIR Binary content element. 
-
+ - The server returns a FHIR Binary resource in the requested format with the document `base64` encoded within the FHIR Binary content element. 
 
 <font color="red"> Provider Systems <b>SHOULD</b> support this query construct.</font>
 
 <h3 id="readresponse">1.4. Read Operation Format Override (Method #3) - with a HTTP Accept Header of [format_2]</h3>
 
-A client makes a read request for an unstructured document (binary) using the `_format`=[format_1] override on the query parameter and a `Accept` HTTP Header =[format_2]. [format_1] and [format_2] specify different content types.
+A client makes a read request for a binary resource using the `_format`=[format_1] override on the query parameter and a `Accept` HTTP Header =[format_2]. [format_1] and [format_2] specify different content types.
 
 <div markdown="span" class="alert alert-success" role="alert">
 GET [baseUrl]/Binary/[id]?&#95;format=[format_1]	with a HTTP Accept header of [format_2]</div>
@@ -203,13 +203,47 @@ Server returns a FHIR Binary resource in the as per format_1 as <code class="hig
 
 <h3 id="readresponse">1.5. Response</h3>
 
+<p>A full set of response codes can be found here <a href="https://nhsconnect.github.io/CareConnectAPI/explore_api_codes.html" target="_blank">API Response Codes</a>. FHIR Servers MUST support the following response codes:</p>
+<!--
 <p>A full set of response codes can be found here <a href="resources_api_codes.html">API Response Codes</a>. FHIR Servers MUST support the following response codes:</p>
+-->
+
+<!--
+<table>
+  <tbody>
+    <tr>
+      <td>200</td>
+      <td>successful operation</td>
+    </tr>
+    <tr>
+      <td>404</td>
+      <td>resource not found</td>
+    </tr>
+    <tr>
+      <td>410</td>
+      <td>resource deleted</td>
+    </tr>
+  </tbody>
+</table>
+-->
 
 <table>
   <tbody>
     <tr>
       <td>200</td>
       <td>successful operation</td>
+    </tr>
+    <tr>
+      <td>400</td>
+      <td>invalid parameter</td>
+    </tr>
+    <tr>
+      <td>401/4xx</td>
+      <td>unauthorized request</td>
+    </tr>
+    <tr>
+      <td>403</td>
+      <td>insufficient scope</td>
     </tr>
     <tr>
       <td>404</td>

@@ -91,19 +91,19 @@ entries:
     #- title: CodeSystem
     #  url: /api_foundation_codesystem.html
     #  output: web
-      subfolders:
+    #  subfolders:
     #  - title: API Interactions
     #    output: web
     #    subfolderitems:
     #    - title: Read
     #      url: /api_interaction_read.html
     #      output: web
-      - title: API Guidance | FHIR&reg;
-        output: web
-        subfolderitems:
-        - title: HTTP Response Codes
-          url: /resources_api_codes.html
-          output: web     
+    #  - title: API Guidance | FHIR&reg;
+    #    output: web
+    #    subfolderitems:
+    #    - title: HTTP Response Codes
+    #      url: /resources_api_codes.html
+    #      output: web     
      #   - title: Reference
       #    url: /resources_reference.html
       #    output: web

@@ -16,12 +16,12 @@ The ‘Get Binary Retrieval Pattern’ supports retrieval of non-structured docu
 
 Non-Structured documents can be any content that is not represented using FHIR resources (e.g. PDFs, PNGs, text, Work Documents etc). 
 
-As these PDFs, PNGs, text, Work documents cannot be expressed natively in FHIR, the FHIR standard and FHIR based APIs require that the FHIR Binary resource MUST be used to convey this content. The FHIR Binary resource represents the data of a single raw artefact as digital content accessible in its native format. When exposing FHIR Binary resources, servers MUST support a different response behaviour to Consumer Read requests than is done in standard FHIR.
+As these PDFs, PNGs, text, Word documents cannot be expressed natively in FHIR, the FHIR standard and FHIR based APIs require that the FHIR Binary resource MUST be used to convey this content. The FHIR Binary resource represents the data of a single raw artefact as digital content accessible in its native format. When exposing FHIR Binary resources, servers MUST support a different response behaviour to Consumer Read requests than is done in standard FHIR.
 
 A non-structured document can be served on the FHIR REST interface in 2 ways:
 
-1. `Native non-encoded form` - if no content type (mime type) is specified in the Read request a Consumer system is expected to retrieve a non-structured document in its native non-encoded form e.g. PDF (i.e. not contained within a FHIR resource). 
-2. `FHIR resource` - if the Read request explicitly specifies the content type (expressed as mime type) i.e, XML/JSON then a Consumer system is expected to retrieve the non-structured document as a utility FHIR Binary resource. 
+1. `Native non-encoded form` - if no content type (MIME type) is specified in the Read request a Consumer system is expected to retrieve a non-structured document in its native non-encoded form e.g. PDF (i.e. not contained within a FHIR resource). 
+2. `FHIR resource` - if the Read request explicitly specifies the content type (expressed as MIME type) i.e, XML/JSON then a Consumer system is expected to retrieve the non-structured document as a utility FHIR Binary resource. 
 
 
 For detailed implementation guidance see the <a href="api_interaction_read.html">Binary Read Operations section</a>.
