@@ -147,14 +147,14 @@ GET [baseUrl]/Binary/[id] 	</div>
 
 <h3 id="readresponse">1.4. Read Operation Format Override (Method #3) - with a HTTP Accept Header of [format_2]</h3>
 
-A client makes a read request for a binary resource using the `_format`=[format_1] override on the query parameter and a `Accept` HTTP Header =[format_2]. [format_1] and [format_2] specify different content types.
+- A client makes a read request for a binary resource using the `_format`=[format_1] override on the query parameter and an `Accept` HTTP Header =[format_2]. 
+- [format_1] and [format_2] specify different content types to be returned.
 
 <div markdown="span" class="alert alert-success" role="alert">
-GET [baseUrl]/Binary/[id]?&#95;format=[format_1]	with a HTTP Accept header of [format_2]</div>
+GET [baseUrl]/Binary/[id]?&#95;format=[format_1]	</div>
 
-
-The server returns a FHIR Binary resource as per [format_1] as `_format` overrides the `Accept` HTTP Header. The document is `base64` encoded within the FHIR Binary content element. 
-
+- The server returns a FHIR Binary resource as per [format_1] as `_format` overrides the `Accept` HTTP Header. 
+- The document is `base64` encoded within the FHIR Binary content element. 
 
 <font color="red"> Provider Systems <b>SHOULD</b> support this query construct.</font>
 
