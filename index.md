@@ -21,9 +21,8 @@ The Care Connect APIs have been developed by NHS Digital in collaboration with t
 The Care Connect RESTful APIs have been developed collaboratively by NHS Digital and the INTEROPen community. These APIs aim to  better support the delivery of care by opening up information and data held across different clinical care settings through the use of nationally defined INTEROPen FHIR® resources.
 -->
 
-The Care Connect APIs are Based on FHIR STU3 and define the minimum conformance requirements and standards for retrieving patient data and records.
+{% include note.html content="The Care Connect APIs are based on FHIR STU3 and define the minimum conformance requirements and standards for retrieving patient data and records.<br><br>To learn more about NHS Digital and INTEROPen please refer to the information at the bottom of this page." %}
 
-To learn more about NHS Digital and INTEROPen see below.
 
 
 # Care Connect Documents API #
